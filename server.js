@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
+/* starts and listens to port */
 app.listen(PORT, function () {
-    console.log('App is listening on 3080');
+    console.log('App is listening on PORT: ' + PORT);
 });
