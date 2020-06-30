@@ -1,6 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const path = require('path');
+const { parse } = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 4040; /* video says not to use 8080 in heroku*/ 
@@ -29,12 +30,23 @@ app.get('*',function (req, res) {
     res.sendFile(path.join(__dirname,'/index.html'));
 });
 
+/* post section */
 app.post('/api/notes', function (req, res) {
     var addNote = req.body;
     addNote.id = addNote;
     userNotes.push(addNote);
     fs.writeFileSync(path.join(__dirname, 'db','db.json'),JSON.stringify(userNotes)
     );res.json(addNote);
+});
+
+
+/* delete section */ 
+app.delete('api/notes/:id', function (req, res) {
+    var toDelete = req.params.id;
+    let deleteNotes = JSON/parse(fs.readFileSync(path.join(__dirname, 'db', 'db.json')));
+    .filter(note => note.id !== toDelete);
+    fs.writeFileSync(path.join(__dirname, 'db', 'db.json'), JSON.stringify(deleteNotes));
+    rs.json(deleteNotes);
 });
 
 /* starts and listens to port */
