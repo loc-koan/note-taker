@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 4040; /* video says not to use 8080 in heroku*/ 
 
-var userData = fs.readFileSync('db.json');
+var userData = fs.readFileSync(__dirname, 'db', 'db.json');
 var userNotes = JSON.parse(userData);
 
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +27,14 @@ app.get('/notes',function (req, res) {
 
 app.get('*',function (req, res) {
     res.sendFile(path.join(__dirname,'/index.html'));
+});
+
+app.post('/api/notes', function (req, res) {
+    var addNote = req.body;
+    addNote.id = addNote;
+    userNotes.push(addNote);
+    fs.writeFileSync(path.join(__dirname, 'db','db.json'),JSON.stringify(userNotes)
+    );res.json(addNote);
 });
 
 /* starts and listens to port */
