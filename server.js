@@ -1,7 +1,6 @@
 const fs = require('fs');
 const express = require('express');
 const path = require('path');
-const { parse } = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 4040; /* video says not to use 8080 in heroku*/ 
@@ -38,7 +37,6 @@ app.post('/api/notes', function (req, res) {
     fs.writeFileSync(path.join(__dirname, 'db','db.json'),JSON.stringify(userNotes)
     );res.json(addNote);
 });
-
 
 /* delete section */ 
 app.delete('api/notes/:id', function (req, res) {
