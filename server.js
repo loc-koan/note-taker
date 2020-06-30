@@ -44,9 +44,9 @@ app.post('/api/notes', function (req, res) {
 app.delete('api/notes/:id', function (req, res) {
     var toDelete = req.params.id;
     let deleteNotes = JSON/parse(fs.readFileSync(path.join(__dirname, 'db', 'db.json')));
-    .filter(note => note.id !== toDelete);
-    fs.writeFileSync(path.join(__dirname, 'db', 'db.json'), JSON.stringify(deleteNotes));
-    rs.json(deleteNotes);
+    toDelete = toDelete.filter(note => note.id !== toDelete);
+    fs.writeFileSync(path.join(__dirname, 'db', 'db.json'), JSON.stringify(deleteNotes)
+    );res.json(deleteNotes);
 });
 
 /* starts and listens to port */
