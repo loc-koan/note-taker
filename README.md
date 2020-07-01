@@ -10,7 +10,7 @@ Using Heroku / express in the backend; this application can be used to write, sa
 
 ## Example:
 
-![GitHub Logo](/images/note_taker.png)
+![Note Taker](/image/note_taker.png)
 
 ## Links:
 
