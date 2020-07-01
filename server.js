@@ -34,7 +34,7 @@ app.get('*',function (req, res) {
 /* post section */
 app.post('/api/notes', function (req, res) {
     var addNote = req.body;
-    addNote.id = addNote;
+    addNote.id = addNote.title.replace(/\s + /g,"").toLowerCase();
     userNotes.push(addNote);
     fs.writeFileSync(path.join(__dirname, 'db','db.json'),JSON.stringify(userNotes)
     );res.json(addNote);
