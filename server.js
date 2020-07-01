@@ -2,10 +2,12 @@ const fs = require('fs');
 const express = require('express');
 const path = require('path');
 
+var pathway = path.join(__dirname, 'db', 'db.json');
+
 const app = express();
 const PORT = process.env.PORT || 4040; /* video says not to use 8080 in heroku*/ 
 
-// var userData = fs.readFileSync(__dirname, 'db', 'db.json');
+var userData = fs.readFileSync(pathway, 'utf-8');
 var userNotes = JSON.parse(userData);
 
 app.use(express.urlencoded({ extended: true }));
