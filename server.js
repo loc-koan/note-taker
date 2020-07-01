@@ -41,13 +41,14 @@ app.post('/api/notes', function (req, res) {
 });
 
 /* delete section */ 
-app.delete('api/notes/:id', function (req, res) {
-    var toDelete = req.params.id;
-    let deleteNotes = JSON/parse(fs.readFileSync(path.join(__dirname, 'db', 'db.json')));
-    toDelete = toDelete.filter(note => note.id !== toDelete);
-    fs.writeFileSync(path.join(__dirname, 'db', 'db.json'), JSON.stringify(deleteNotes)
-    );res.json(deleteNotes);
-});
+app.delete("/api/notes/:id", function (req, res) {
+    userNotes = userNotes.filter((note) => note.id !== req.params.id);
+    fs.writeFileSync(
+      path.join(__dirname, "db", "db.json"),
+      JSON.stringify(userNotes)
+    );
+    res.json(userNotes);
+  });
 
 /* starts and listens to port */
 app.listen(PORT, function () {
